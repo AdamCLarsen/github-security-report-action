@@ -12,6 +12,7 @@ program.requiredOption('-r --repository <repository>', 'github repository, owner
 program.option('-s --sarif-directory <sarifReportDirectory>', 'the SARIF report directory to load reports from', '../results');
 program.option('-o --output-directory <outputDirectory>', 'output directory for summary report', '.');
 program.option('--github-api-url <url>', 'GitHub API URL', 'https://api.github.com')
+program.option('--template-type <template>', 'Report Template Type', 'summary')
 
 program.parse(process.argv);
 const opts = program.opts();
@@ -22,7 +23,7 @@ const reportGenerateConfig: ReportGeneratorConfig = {
   sarifReportDirectory: getPath(opts.sarifDirectory),
   outputDirectory: getPath(opts.outputDirectory),
   templating: {
-    name: 'summary'
+    name: opts.templateType
   }
 }
 

@@ -22,6 +22,10 @@ inputs:
     required: true
     default: ${{ github.repository }}
 
+  template:
+    description: Select the report template type you want to use. For example, `summary` or `report`.
+    default: summary
+
 runs:
   using: node12
   main: dist/index.js
