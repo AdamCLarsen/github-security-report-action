@@ -226,7 +226,7 @@ function generateAlertSummary(open: CodeScanningResults, rules: CodeScanningRule
   let total = 0;
 
   open.getCodeQLScanningAlerts().forEach(codeScanAlert => {
-    const severity = codeScanAlert.severity
+    let severity = codeScanAlert.severity
       , matchedRule = rules ? rules[codeScanAlert.ruleId] : null
     ;
 

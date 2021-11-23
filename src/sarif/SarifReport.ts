@@ -30,6 +30,19 @@ function getRules(report: SarifReportData) {
         if (run.tool.driver.name === 'CodeQL') { //TODO could support other tools
           sarifRules = run.tool.driver.rules;
         }
+
+        if(run.tool.extensions) {
+          run.tool.extensions.forEach(ext => {
+            if(ext.rules) {
+              if(sarifRules) {
+                sarifRules = sarifRules.concat(ext.rules);
+              }
+              else{
+                sarifRules = ext.rules;
+              }
+            }
+          });
+        }
       });
     }
   } else {

@@ -34,7 +34,7 @@ async function execute(reportGenerateConfig: ReportGeneratorConfig) {
     const file = await generator.run();
     console.log(`Summary Report generated: ${file}`);
 
-  } catch (err) {
+  } catch (err: any) {
     console.log(err.stack);
     console.error(err.message);
     console.error();
