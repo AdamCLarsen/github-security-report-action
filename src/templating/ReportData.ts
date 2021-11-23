@@ -226,9 +226,13 @@ function generateAlertSummary(open: CodeScanningResults, rules: CodeScanningRule
   let total = 0;
 
   open.getCodeQLScanningAlerts().forEach(codeScanAlert => {
-    let severity = codeScanAlert.severity
+    const severity = codeScanAlert.severity
       , matchedRule = rules ? rules[codeScanAlert.ruleId] : null
     ;
+
+    if(codeScanAlert.dismissed?.reason === "false positive"){
+      return; // don't include false positives in our reporting.
+    }
 
     const summary: AlertSummary = {
       tool: codeScanAlert.toolName,
